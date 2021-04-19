@@ -11,6 +11,18 @@ import (
 	"time"
 )
 
+func TestExternalAccountBindingString(t *testing.T) {
+	eab := ExternalAccountBinding{
+		KID: "kid",
+		Key: []byte("key"),
+	}
+	got := eab.String()
+	want := `&{KID: "kid", Key: redacted}`
+	if got != want {
+		t.Errorf("eab.String() = %q, want: %q", got, want)
+	}
+}
+
 func TestRateLimit(t *testing.T) {
 	now := time.Date(2017, 04, 27, 10, 0, 0, 0, time.UTC)
 	f := timeNow
